@@ -71,7 +71,30 @@ table {
   color: #61dafb;
 } */
 
+.header {
+  width: 100vw;
+  height: 10vh;
+  background: rgba(211, 211, 211, 0.906);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLinks {
+  justify-self: flex-end;
+  display: flex;
+  list-style-type: none;
+  width: 30vw;
+  justify-content: space-around;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-left: 20px;
+}
+
 .gameList {
+  margin: 20px auto;
   width: 80vw;
   display: flex;
   flex-wrap: wrap;
@@ -83,3 +106,6 @@ table {
   width: 20vw;
   margin: 20px 20px;
 }
+
+
+

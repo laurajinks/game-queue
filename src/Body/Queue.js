@@ -19,6 +19,7 @@ export default class Queue extends Component {
         this.displayInput = this.displayInput.bind(this);
         this.updateNotes = this.updateNotes.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.completeGame = this.completeGame.bind(this);
     }
 
 
@@ -39,7 +40,6 @@ export default class Queue extends Component {
     }
 
     deleteBtn (id) {
-        console.log('button pressed')
         axios.delete(`${url}/api/games/${id}`)
     }
 
@@ -49,7 +49,6 @@ export default class Queue extends Component {
 
     updateNotes (e, id) {
         if (e.key === 'Enter') {
-            console.log(this.state.input)
             axios.put(`${url}/api/games/${id}`, {notes: this.state.input})
             .then(response => {
                 this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
@@ -63,9 +62,18 @@ export default class Queue extends Component {
         this.setState({ input: e.target.value });
     }
 
+    completeGame (id) {
+        axios.post(`${url}/api/games/${id}`)
+        .then(response => {
+            this.setState({ games: response.data })
+        })
+
+    }
+
     render () {
         return (
             <div className='gameList'>
+                <h1>Queue</h1><br></br>
                 {this.state.games.map(game => (
                     <Game key={game.id}
                         id={game.id}
@@ -77,7 +85,8 @@ export default class Queue extends Component {
                         displayInput={this.displayInput}
                         updateNotes={this.updateNotes}
                         handleInput={this.handleInput}
-                        displayEditBtn={this.state.displayEditBtn}/>))}
+                        displayEditBtn={this.state.displayEditBtn}
+                        completeGame={this.completeGame}/>))}
             </div>
         );
     }

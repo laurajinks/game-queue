@@ -3,6 +3,7 @@ const apiKey = 'a64fd118e506b5420e03926b6b331ee7ab3c268b'
 
 
 const games = [];
+const completedGames = [];
 let searchResults = [];
 
 //Get initial games for demo purposes
@@ -44,6 +45,11 @@ getGames = (req, res, next) => {
     res.status(200).json(games);
         }
 
+//Retrieve completed games in local API to display in list
+getCompletedGames = (req, res, next) => {
+    res.status(200).json(completedGames);
+}
+
 // Search GiantBomb API for game entered in search bar
 searchGames = (req, res, next) => {
     let search = req.query.search.replace(' ', '%20')
@@ -70,8 +76,7 @@ addNew = (req, res, next) => {
 }
 
 deleteGame = (req, res, next) => {
-    console.log('Step 2: API reached')
-    const index = games.find(game => +game.id === +req.params.id);
+    const index = games.findIndex(game => +game.id === +req.params.id);
     games.splice(index, 1);
     res.json(games);
 }
@@ -82,10 +87,18 @@ editNote = (req, res, next) => {
     res.json(games);
 }
 
+completeGame = (req, res, next) => {
+    let index = games.findIndex(game => +game.id === +req.params.id);
+    completedGames.push(games.splice([index], 1));
+    res.json(games);
+}
+
 module.exports = {
     getGames,
+    getCompletedGames,
     searchGames,
     addNew,
     deleteGame,
-    editNote
+    editNote,
+    completeGame
 }
