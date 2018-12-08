@@ -3,16 +3,17 @@ import axios from 'axios';
 import Result from './Result'
 const url = "http://localhost:3001";
 
+//Search component to add new games to queue
+
 export default class Search extends Component {
-    constructor () {
-        super ();
+    constructor (props) {
+        super (props);
 
         this.state = {
             results: []
         }
 
         this.handleEnter = this.handleEnter.bind(this);
-        this.addNew = this.addNew.bind(this);
 
     }
 
@@ -29,14 +30,9 @@ export default class Search extends Component {
         }
     }
 
-    //Add game from search results to Queue
-    addNew (game) {
-        axios.post(`${url}/api/games`, game)
-        this.setState({  results: [] });
-        axios.get(`${url}/api/games`);
-    }
+    
 
-    render () {
+    render (props) {
         return (
             <div>
                 <input type='text' placeholder='Search'
@@ -46,7 +42,7 @@ export default class Search extends Component {
                         title={result.title}
                         img={result.img}
                         notes={result.notes}
-                        addNew = {this.addNew}/>))}
+                        addNew={this.props.addNew}/>))}
                 
             </div>
         )

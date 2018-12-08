@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Result = props => {
-        
+//Results of searching for new game
 
+const Result = (props) => {
 
         return (
             <div>
