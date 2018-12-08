@@ -14,6 +14,11 @@ export default class Completed extends Component {
             showEdit: false,
             displayEditBtn: true
         }
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.deleteBtn = this.deleteBtn.bind(this);
+        this.displayInput = this.displayInput.bind(this);
+        this.updateNotes = this.updateNotes.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     componentDidMount () {
@@ -25,10 +30,33 @@ export default class Completed extends Component {
         .catch(err => console.log(err));
     }
 
+    deleteBtn (id) {
+        axios.delete(`${url}/api/completedGames/${id}`)
+    }
+
+    displayInput () {
+        this.setState({ showEdit: true , displayEditBtn: false})
+    }
+
+    updateNotes (e, id) {
+        if (e.key === 'Enter') {
+            axios.put(`${url}/api/completedGames/${id}`, {notes: this.state.input})
+            .then(response => {
+                this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
+                console.log(this.state.games)
+            })
+            .catch(err => console.log(err));
+        }
+    }
+
+    handleInput (e) {
+        this.setState({ input: e.target.value });
+    }
+
     render () {
         return (
             <div className='gameList'>
-                <h1>Completed Games</h1>
+                <h1 className='pageTitle'>Completed Games</h1>
                 {this.state.games.map(game => (
                     <Game key={game.id}
                         id={game.id}

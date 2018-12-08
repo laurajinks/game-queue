@@ -38,7 +38,8 @@ export default class Search extends Component {
                 <input type='text' placeholder='Search'
                 onKeyUp={this.handleEnter}></input>
                 {this.state.results.map(result => (
-                    <Result key={result.id}
+                    <Result key={result.key}
+                        id={result.id}
                         title={result.title}
                         img={result.img}
                         notes={result.notes}

@@ -12,11 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.coverArt {
-  max-width: 250px;
-}
-
-.resultThumb {
-  max-width: 70px;
-}

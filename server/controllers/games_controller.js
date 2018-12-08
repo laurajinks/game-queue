@@ -58,12 +58,12 @@ searchGames = (req, res, next) => {
         response.data.results.forEach(result => {
         console.log('search results: ', searchResults);
         let game = {title: result.name,
+        key: result.id,
         id: result.id,
         img: result.image.original_url,
         notes: ''}
         searchResults.push(game);
         })
-        console.log('search results part 2: ', searchResults);
         res.status(200).json(searchResults);
     })
     .then(searchResults = [])
@@ -75,17 +75,35 @@ addNew = (req, res, next) => {
     res.status(200).json(games);
 }
 
+//delete functions
+
 deleteGame = (req, res, next) => {
     const index = games.findIndex(game => +game.id === +req.params.id);
     games.splice(index, 1);
     res.json(games);
 }
 
+deleteCompletedGame = (req, res, next) => {
+    const index = completedGames.findIndex(game => +game.id === +req.params.id);
+    completedGames.splice(index, 1);
+    res.json(completedGames);
+}
+
+//edit notes functions
+
 editNote = (req, res, next) => {
     games.find(game => +game.id === +req.params.id && 
         Object.assign(game, req.body));
     res.json(games);
 }
+
+editCompletedNote = (req, res, next) => {
+    completedGames.find(game => +game.id === +req.params.id && 
+        Object.assign(game, req.body));
+    res.json(completedGames);
+}
+
+//functions to move games between Queue and Completed
 
 completeGame = (req, res, next) => {
     let index = games.findIndex(game => +game.id === +req.params.id);
@@ -101,6 +119,8 @@ module.exports = {
     searchGames,
     addNew,
     deleteGame,
+    deleteCompletedGame,
     editNote,
+    editCompletedNote,
     completeGame
 }

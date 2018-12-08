@@ -32,6 +32,7 @@ class App extends Component {
 
   //Add game from search results to Queue
   addNew (game) {
+    console.log(game)
     axios.post(`${url}/api/games`, game)
     this.setState({  results: [] });
     axios.get(`${url}/api/games`);
@@ -57,7 +58,7 @@ class App extends Component {
       <div className="App">
         <Header handleQueue={this.handleQueue}
                 handleCompleted={this.handleCompleted} />
-        {this.state.displayAddBtn === true && <button onClick={this.handleAdd}>Add</button>}
+        {this.state.displayAddBtn === true && <button className='addBtn' onClick={this.handleAdd}>Add New Game</button>}
         {this.state.displayCloseBtn === true && <button onClick={this.handleClose}>Close</button>}
         {this.state.displaySearch === true && <Search addNew={this.addNew}/>}
         {this.state.displayQueue === true && <Queue />}
