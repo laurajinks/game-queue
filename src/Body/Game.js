@@ -4,13 +4,14 @@ const Game = props => {
 
 
         return (
-            <div>
+            <div className='gameContainer'>
                 <img className='coverArt' src={props.img} alt={props.title}></img>
-                <h2>{props.title}</h2>
+                <h2>{props.title}</h2><br></br>
                 <p>Notes: {props.notes}</p>
-                <button>Edit Notes</button>
+                <button onClick={props.displayInput}>Edit Note</button>
+                {props.showEdit && <input type='text' placeholder='Add note' onChange={props.handleInput} onKeyUp={(e) => props.updateNotes(e, props.id)}/>}
                 <button>Complete</button>
-                <button>Delete</button>
+                <button onClick={() => props.deleteBtn(props.id)}>Delete</button>
             </div>
         )
 

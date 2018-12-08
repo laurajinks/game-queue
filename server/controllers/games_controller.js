@@ -69,8 +69,23 @@ addNew = (req, res, next) => {
     res.status(200).json(games);
 }
 
+deleteGame = (req, res, next) => {
+    console.log('Step 2: API reached')
+    const index = games.find(game => +game.id === +req.params.id);
+    games.splice(index, 1);
+    res.json(games);
+}
+
+editNote = (req, res, next) => {
+    games.find(game => +game.id === +req.params.id && 
+        Object.assign(game, req.body));
+    res.json(games);
+}
+
 module.exports = {
     getGames,
     searchGames,
-    addNew
+    addNew,
+    deleteGame,
+    editNote
 }

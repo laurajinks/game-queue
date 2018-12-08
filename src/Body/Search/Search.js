@@ -16,6 +16,7 @@ export default class Search extends Component {
 
     }
 
+    //fires when Enter key is hit after entering search term
     handleEnter (e) {
         if (e.key === 'Enter') {
             axios.get(`${url}/api/search/?search=${e.target.value}`)
@@ -28,11 +29,13 @@ export default class Search extends Component {
         }
     }
 
+    //Add game from search results to Queue
     addNew (game) {
         axios.post(`${url}/api/games`, game)
-        this.setState({ results: [] });
+        this.setState({  results: [] });
         axios.get(`${url}/api/games`);
     }
+
     render () {
         return (
             <div>
