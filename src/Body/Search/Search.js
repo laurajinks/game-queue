@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import Result from './Result'
 const url = "http://localhost:3001";
 
 export default class Search extends Component {
@@ -11,6 +12,7 @@ export default class Search extends Component {
         }
 
         this.handleEnter = this.handleEnter.bind(this);
+        this.addNew = this.addNew.bind(this);
 
     }
 
@@ -26,11 +28,22 @@ export default class Search extends Component {
         }
     }
 
+    addNew (game) {
+        axios.post(`${url}/api/games`, game)
+        this.setState({ results: [] });
+        axios.get(`${url}/api/games`);
+    }
     render () {
         return (
             <div>
                 <input type='text' placeholder='Search'
                 onKeyUp={this.handleEnter}></input>
+                {this.state.results.map(result => (
+                    <Result key={result.id}
+                        title={result.title}
+                        img={result.img}
+                        notes={result.notes}
+                        addNew = {this.addNew}/>))}
                 
             </div>
         )

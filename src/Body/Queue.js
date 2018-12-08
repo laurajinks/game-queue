@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios';
-import Game from './Games'
+import Game from './Game'
 
 const url = "http://localhost:3001";
 
@@ -30,7 +30,7 @@ export default class Queue extends Component {
                     <Game key={game.id}
                         title={game.title}
                         img={game.img}
-                notes={game.notes}/>))}
+                        notes={game.notes}/>))}
             </div>
         );
     }

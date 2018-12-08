@@ -16,3 +16,7 @@ code {
 .coverArt {
   max-width: 250px;
 }
+
+.resultThumb {
+  max-width: 70px;
+}

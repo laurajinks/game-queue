@@ -3,8 +3,7 @@ const apiKey = 'a64fd118e506b5420e03926b6b331ee7ab3c268b'
 
 
 const games = [];
-
-const searchResults = [];
+let searchResults = [];
 
 //Get initial games for demo purposes
 // Kingdom Hearts III
@@ -40,30 +39,38 @@ axios.get(`https://www.giantbomb.com/api/game/3030-13594/?api_key=${apiKey}&form
     })
 .catch(err => console.log(err))
 
-        
+// Retrieve games in local API to display in list
 getGames = (req, res, next) => {
     res.status(200).json(games);
         }
 
+// Search GiantBomb API for game entered in search bar
 searchGames = (req, res, next) => {
-
-    console.log(req.query);
     let search = req.query.search.replace(' ', '%20')
     axios.get(`http://www.giantbomb.com/api/search?api_key=${apiKey}&format=json&query=${search}&resources=game`)
     .then( (response) => {
         response.data.results.forEach(result => {
+        console.log('search results: ', searchResults);
         let game = {title: result.name,
         id: result.id,
         img: result.image.original_url,
         notes: ''}
         searchResults.push(game);
         })
+        console.log('search results part 2: ', searchResults);
         res.status(200).json(searchResults);
     })
+    .then(searchResults = [])
     .catch(err => console.log(err));
+}
+
+addNew = (req, res, next) => {
+    games.push(req.body);
+    res.status(200).json(games);
 }
 
 module.exports = {
     getGames,
-    searchGames
+    searchGames,
+    addNew
 }
