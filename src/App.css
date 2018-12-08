@@ -203,7 +203,7 @@ h1, h2, h3, h4, p, button, input, ul, li {
   color: red;
 }
 
-.editNoteBtn, .completeBtn {
+.editNoteBtn, .moveBtn {
   padding: 5px 0px;
   width: 60%;
   font-size: 12pt;
@@ -215,7 +215,7 @@ h1, h2, h3, h4, p, button, input, ul, li {
 
 }
 
-.completeBtn {
+.moveBtn {
   justify-self: flex-end;
   margin-bottom: 10px;
 }

@@ -113,6 +113,14 @@ completeGame = (req, res, next) => {
     res.json(games);
 }
 
+returnToQueue = (req, res, next) => {
+    let index = completedGames.findIndex(game => +game.id === +req.params.id);
+    let game = completedGames[index];
+    completedGames.splice(index, 1);
+    games.push(game);
+    res.json(completedGames);
+}
+
 module.exports = {
     getGames,
     getCompletedGames,
@@ -122,5 +130,6 @@ module.exports = {
     deleteCompletedGame,
     editNote,
     editCompletedNote,
-    completeGame
+    completeGame,
+    returnToQueue
 }

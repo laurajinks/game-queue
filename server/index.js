@@ -10,6 +10,7 @@ const {deleteGame} = require('./controllers/games_controller');
 const {editNote} = require('./controllers/games_controller');
 const {editCompletedNote} = require('./controllers/games_controller');
 const {completeGame} = require('./controllers/games_controller');
+const {returnToQueue} = require('./controllers/games_controller');
 const {deleteCompletedGame} = require('./controllers/games_controller');
 const port = 3001;
 const app = express();
@@ -22,7 +23,8 @@ app.get('/api/games', getGames);
 app.get('/api/completedGames', getCompletedGames);
 app.get('/api/search', searchGames);
 app.post('/api/games', addNew);
-app.post('/api/games/:id', completeGame)
+app.post('/api/games/:id', completeGame);
+app.post('/api/completedGames/:id', returnToQueue);
 app.delete('/api/games/:id', deleteGame);
 app.delete('/api/completedGames/:id', deleteCompletedGame);
 app.put('/api/games/:id', editNote);

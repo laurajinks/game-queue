@@ -2,7 +2,6 @@ import React from 'react';
 
 const Game = props => {
 
-
         return (
             <div className='gameContainer'>
 
@@ -20,13 +19,15 @@ const Game = props => {
                 {props.showEdit && <input type='text' placeholder='Add note' 
                 onChange={props.handleInput} onKeyUp={(e) => props.updateNotes(e, props.id)}/>}<br></br>
 
-                <button onClick={() => props.completeGame(props.id)}
-                className='completeBtn'>Game Completed</button>
-                </div>
+                {props.displayCompleteBtn === true && <button onClick={() => props.completeGame(props.id)}
+                className='moveBtn'>Game Completed</button>}
 
+                {props.displayQueueBtn === true && <button onClick={() => props.returnToQueue(props.id)}
+                className='moveBtn'>Return to Queue</button>}
+
+                </div>
             </div>
         )
+    }
 
-}
-
-export default Game;
+export default Game

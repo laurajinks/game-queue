@@ -12,7 +12,9 @@ export default class Queue extends Component {
             games: [],
             input:'',
             showEdit: false,
-            displayEditBtn: true
+            displayEditBtn: true,
+            displayCompleteBtn: true,
+            displayQueueBtn: false
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.deleteBtn = this.deleteBtn.bind(this);
@@ -86,7 +88,9 @@ export default class Queue extends Component {
                         updateNotes={this.updateNotes}
                         handleInput={this.handleInput}
                         displayEditBtn={this.state.displayEditBtn}
-                        completeGame={this.completeGame}/>))}
+                        completeGame={this.completeGame}
+                        displayCompleteBtn={this.state.displayCompleteBtn}
+                        displayQueueBtn={this.state.displayQueueBtn}/>))}
             </div>
         );
     }

@@ -12,13 +12,16 @@ export default class Completed extends Component {
             games: [],
             input:'',
             showEdit: false,
-            displayEditBtn: true
+            displayEditBtn: true,
+            displayCompleteBtn: false,
+            displayQueueBtn: true
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.deleteBtn = this.deleteBtn.bind(this);
         this.displayInput = this.displayInput.bind(this);
         this.updateNotes = this.updateNotes.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.returnToQueue = this.returnToQueue.bind(this);
     }
 
     componentDidMount () {
@@ -53,6 +56,15 @@ export default class Completed extends Component {
         this.setState({ input: e.target.value });
     }
 
+    returnToQueue (id) {
+        axios.post(`${url}/api/completedGames/${id}`)
+        .then(response => {
+            this.setState({ games: response.data })
+        })
+    }
+
+
+
     render () {
         return (
             <div className='gameList'>
@@ -69,7 +81,9 @@ export default class Completed extends Component {
                         updateNotes={this.updateNotes}
                         handleInput={this.handleInput}
                         displayEditBtn={this.state.displayEditBtn}
-                        completeGame={this.completeGame}/>))}
+                        returnToQueue={this.returnToQueue}
+                        displayCompleteBtn={this.state.displayCompleteBtn}
+                        displayQueueBtn={this.state.displayQueueBtn}/>))}
             </div>
         )
     }
