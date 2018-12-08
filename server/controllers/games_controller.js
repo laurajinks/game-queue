@@ -89,7 +89,9 @@ editNote = (req, res, next) => {
 
 completeGame = (req, res, next) => {
     let index = games.findIndex(game => +game.id === +req.params.id);
-    completedGames.push(games.splice([index], 1));
+    let game = games[index];
+    games.splice(index, 1);
+    completedGames.push(game);
     res.json(games);
 }
 
