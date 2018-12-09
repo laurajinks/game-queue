@@ -23,8 +23,9 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleQueue = this.handleQueue.bind(this);
     this.handleCompleted = this.handleCompleted.bind(this);
+    this.logoClick = this.logoClick.bind(this);
 
-  }s
+  }
 
   handleAdd () {
     this.setState({ displaySearch: true, displayQueue: false , displayCloseBtn: true, displayAddBtn: false})
@@ -36,30 +37,36 @@ class App extends Component {
     axios.post(`${url}/api/games`, game)
     this.setState({  results: [] });
     axios.get(`${url}/api/games`);
-    this.setState({displaySearch: false, displayQueue: true, displayCloseBtn: false, displayAddBtn: true})
+    this.setState({ displaySearch: false, displayQueue: true, displayCloseBtn: false, displayAddBtn: true })
 }
 
   handleClose () {
-    this.setState({ displaySearch: false, displayQueue: true, displayCloseBtn: false, displayAddBtn: true})
+    this.setState({ displaySearch: false, displayQueue: true, displayCloseBtn: false, displayAddBtn: true })
   }
 
   //Show Queue when link in header is clicked
   handleQueue () {
-    this.setState({ displayQueue: true, displayCompleted: false, displayAddBtn: true })
+    this.setState({ displayQueue: true, displayCompleted: false, displayAddBtn: true, displaySearch: false, displayCloseBtn: false })
   }
 
   //Show Completed Games when link in header is clicked
   handleCompleted () {
-    this.setState({ displayQueue: false, displayCompleted: true, displayAddBtn: false })
+    this.setState({ displayQueue: false, displayCompleted: true, displayAddBtn: false, displaySearch: false, displayCloseBtn: false })
+  }
+
+  logoClick () {
+    this.setState({ displayQueue: true, displayCompleted: false, displayAddBtn: true, displaySearch: false, displayCloseBtn: false })
   }
 
   render() {
     return (
       <div className="App">
         <Header handleQueue={this.handleQueue}
-                handleCompleted={this.handleCompleted} />
+                handleCompleted={this.handleCompleted}
+                logoClick={this.logoClick} />
         {this.state.displayAddBtn === true && <button className='addBtn' onClick={this.handleAdd}>Add New Game</button>}
-        {this.state.displayCloseBtn === true && <button onClick={this.handleClose}>Close</button>}
+        {this.state.displayCloseBtn === true && <button onClick={this.handleClose} 
+        className='cancelBtn'>Cancel</button>}
         {this.state.displaySearch === true && <Search addNew={this.addNew}/>}
         {this.state.displayQueue === true && <Queue />}
         {this.state.displayCompleted === true && <Completed />}

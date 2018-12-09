@@ -34,9 +34,11 @@ export default class Search extends Component {
 
     render (props) {
         return (
-            <div>
-                <input type='text' placeholder='Search'
+            <div className='searchComponent'>
+            <div className='searchBar'>
+            <input className='searchInput' type='text' placeholder='Enter Game Title'
                 onKeyUp={this.handleEnter}></input>
+            </div>
                 {this.state.results.map(result => (
                     <Result key={result.key}
                         id={result.id}

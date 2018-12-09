@@ -4,16 +4,18 @@ import React from 'react';
 
 const Result = (props) => {
 
-        return (
-            <div>
+    return (
+        <div className='resultBox'>
+            <div className='result'>
                 <img className='resultThumb' src={props.img} alt={props.title}></img>
-                <p>{props.title}</p>
-                <button onClick={ () => props.addNew({key: props.id,
+                <p className='resultTitle'>{props.title}</p>
+                <button className='addNewBtn' onClick={ () => props.addNew({key: props.id,
                                                 id: props.id,
                                                 title: props.title,
                                                 img: props.img,
                                                 notes: props.notes})}>+</button>
             </div>
+        </div>
         )
 
 }

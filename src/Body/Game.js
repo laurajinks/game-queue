@@ -16,7 +16,7 @@ const Game = props => {
                 {props.displayEditBtn === true && <button onClick={props.displayInput}
                 className='editNoteBtn'>Edit Note</button>}
 
-                {props.showEdit && <input type='text' placeholder='Add note' 
+                {props.showEdit === true && <input className='noteInput' value={props.note} type='text' placeholder='Add note' 
                 onChange={props.handleInput} onKeyUp={(e) => props.updateNotes(e, props.id)}/>}<br></br>
 
                 {props.displayCompleteBtn === true && <button onClick={() => props.completeGame(props.id)}

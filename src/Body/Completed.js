@@ -11,12 +11,12 @@ export default class Completed extends Component {
         this.state = {
             games: [],
             input:'',
-            showEdit: false,
             displayEditBtn: true,
             displayCompleteBtn: false,
             displayQueueBtn: true
         }
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.deleteBtn = this.deleteBtn.bind(this);
         this.displayInput = this.displayInput.bind(this);
         this.updateNotes = this.updateNotes.bind(this);
@@ -29,6 +29,14 @@ export default class Completed extends Component {
         .then(response => {
             this.setState({ games: response.data });
             console.log(this.state.games)
+        })
+        .catch(err => console.log(err));
+    }
+
+    componentDidUpdate () {
+        axios.get(`${url}/api/completedGames`)
+        .then(response => {
+            this.setState({games: response.data});
         })
         .catch(err => console.log(err));
     }

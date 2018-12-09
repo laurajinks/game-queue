@@ -88,7 +88,7 @@ export default class Queue extends Component {
                         updateNotes={this.updateNotes}
                         handleInput={this.handleInput}
                         displayEditBtn={this.state.displayEditBtn}
-                        completeGame={this.completeGame}
+                        returnToQueue={this.returnToQueue}
                         displayCompleteBtn={this.state.displayCompleteBtn}
                         displayQueueBtn={this.state.displayQueueBtn}/>))}
             </div>
