@@ -1,4 +1,5 @@
 import React from 'react';
+import NoteInput from './NoteInput'
 
 const Game = props => {
 
@@ -13,17 +14,21 @@ const Game = props => {
                 <h2 className='gameTitle'>{props.title}</h2><br></br>
                 <p className='notes'>Notes: {props.notes}</p>
 
-                {props.displayEditBtn === true && <button onClick={props.displayInput}
-                className='editNoteBtn'>Edit Note</button>}
+                <div className='gameFooter'>
+                    {props.displayEditBtn === true && <button onClick={props.displayInput}
+                    className='editNoteBtn'>Edit Note</button>}
 
-                {props.showEdit === true && <input className='noteInput' value={props.note} type='text' placeholder='Add note' 
-                onChange={props.handleInput} onKeyUp={(e) => props.updateNotes(e, props.id)}/>}<br></br>
+                    {props.showEdit === true && <NoteInput note={props.note}
+                                                handleInput={props.handleInput}
+                                                updateNotes={props.updateNotes}
+                                                cancelEdit={props.cancelEdit}/>}<br></br>
 
-                {props.displayCompleteBtn === true && <button onClick={() => props.completeGame(props.id)}
-                className='moveBtn'>Game Completed</button>}
+                    {props.displayCompleteBtn === true && <button onClick={() => props.completeGame(props.id)}
+                    className='moveBtn'>Game Completed</button>}
 
-                {props.displayQueueBtn === true && <button onClick={() => props.returnToQueue(props.id)}
-                className='moveBtn'>Return to Queue</button>}
+                    {props.displayQueueBtn === true && <button onClick={() => props.returnToQueue(props.id)}
+                    className='moveBtn'>Return to Queue</button>}
+                </div>
 
                 </div>
             </div>

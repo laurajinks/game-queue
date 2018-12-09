@@ -11,6 +11,7 @@ export default class Completed extends Component {
         this.state = {
             games: [],
             input:'',
+            showEdit: false,
             displayEditBtn: true,
             displayCompleteBtn: false,
             displayQueueBtn: true
@@ -22,6 +23,7 @@ export default class Completed extends Component {
         this.updateNotes = this.updateNotes.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.returnToQueue = this.returnToQueue.bind(this);
+        this.cancelEdit = this.cancelEdit.bind(this);
     }
 
     componentDidMount () {
@@ -60,6 +62,10 @@ export default class Completed extends Component {
         }
     }
 
+    cancelEdit () {
+        this.setState({showEdit: false})
+    }
+
     handleInput (e) {
         this.setState({ input: e.target.value });
     }
@@ -91,7 +97,8 @@ export default class Completed extends Component {
                         displayEditBtn={this.state.displayEditBtn}
                         returnToQueue={this.returnToQueue}
                         displayCompleteBtn={this.state.displayCompleteBtn}
-                        displayQueueBtn={this.state.displayQueueBtn}/>))}
+                        displayQueueBtn={this.state.displayQueueBtn}
+                        cancelEdit={this.cancelEdit}/>))}
             </div>
         )
     }
