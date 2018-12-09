@@ -86,7 +86,7 @@ table {
   align-items: center;
   justify-content: space-between;
   color: #F4F4F9;
-  font-family: 'Special Elite', cursive;
+  font-family: 'Sonsie One', cursive;
 }
 
 .headerLinks {
@@ -101,10 +101,10 @@ table {
 
 .headerListItem:hover {
   text-shadow:
-  -1px -1px 0 #F4F4F9,
-  -1px -1px 0 #F4F4F9,
-  -1px -1px 0 #F4F4F9,
-  -1px -1px 0 #F4F4F9;
+  -.5px -.5px 0 #F4F4F9,
+  -.5px -.5px 0 #F4F4F9,
+  -.5px -.5px 0 #F4F4F9,
+  -.5px -.5px 0 #F4F4F9;
 }
 
 .appTitle {
@@ -123,7 +123,7 @@ table {
   font-weight: bold;
   color: #F4F4F9;
   background: rgba(47,69,80, .15);
-  font-family: 'Special Elite', cursive;
+  font-family: 'Sonsie One', cursive;
 }
 
 /* Styling for Search Results */
@@ -262,8 +262,7 @@ table {
 }
 
 .addBtn, .cancelBtn {
-  background: #2F4550;
-  opacity: .7;
+  background: rgba(47,69,80, .3);
   color: #E6EED6;
   margin: 20px;
   width: 20vw;
@@ -275,8 +274,9 @@ table {
 }
 
 .addBtn:hover, .cancelBtn:hover {
-  background: #B8DBD9;
-  color: #2F4550;
+  background: #2F4550;
+  opacity: .7;
+  color: #F4F4F9;
 }
 
 .deleteBtn {
