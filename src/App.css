@@ -50,7 +50,7 @@ table {
 .App {
   text-align: center;
   min-height: 110vh;
-  background: #fff;
+  background: #000;
   transition: .2;
 }
 
@@ -74,10 +74,6 @@ table {
   color: #61dafb;
 } */
 
-h1, h2, h3, h4, p, button, input, ul, li {
-  font-family: 'Open Sans', sans-serif;
-}
-
 .headerLinks, button {
   cursor: pointer;
 }
@@ -85,12 +81,12 @@ h1, h2, h3, h4, p, button, input, ul, li {
 .header {
   width: 100vw;
   height: 10vh;
-  background: #F1F0EA;
+  background: rgba(47,69,80, .15);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #2D232E;
-  opacity: .75;
+  color: #F4F4F9;
+  font-family: 'Special Elite', cursive;
 }
 
 .headerLinks {
@@ -104,19 +100,18 @@ h1, h2, h3, h4, p, button, input, ul, li {
 }
 
 .headerListItem:hover {
-  /* font-weight: 800; */
   text-shadow:
-  -.5px -.5px 0 #2D232E,
-  -.5px -.5px 0 #2D232E,
-  -.5px -.5px 0 #2D232E,
-  -.5px -.5px 0 #2D232E;
+  -1px -1px 0 #F4F4F9,
+  -1px -1px 0 #F4F4F9,
+  -1px -1px 0 #F4F4F9,
+  -1px -1px 0 #F4F4F9;
 }
 
 .appTitle {
   text-align: center;
   margin-left: 20px;
   font-weight: 800;
-  font-size: 40px;
+  font-size: 30px;
   cursor: pointer;
 }
 
@@ -126,9 +121,9 @@ h1, h2, h3, h4, p, button, input, ul, li {
   font-size: 40px;
   text-align: center;
   font-weight: bold;
-  color: #2D232E;
-  background: #F1F0EA;
-  opacity: .8;
+  color: #F4F4F9;
+  background: rgba(47,69,80, .15);
+  font-family: 'Special Elite', cursive;
 }
 
 /* Styling for Search Results */
@@ -140,6 +135,7 @@ h1, h2, h3, h4, p, button, input, ul, li {
   margin: 0px auto;
   justify-content: center;
   flex-wrap: wrap;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .searchBar {
@@ -161,9 +157,10 @@ h1, h2, h3, h4, p, button, input, ul, li {
   height: 45vh;
   justify-content: center;
   align-content: center;
-  background: rgba(71,68,72, .7);
-  color: #F1F0EA;
+  background: rgba(47,69,80, .3);
+  color: #F4F4F9;;
   border-radius: 20px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .result {
@@ -181,29 +178,11 @@ h1, h2, h3, h4, p, button, input, ul, li {
   max-height: 60%;
   margin: 15px;
   align-self: center;
-  border: 2px solid #2D232E
+  border: 2px solid #586F7C;
 }
 
 .resultTitle {
   font-weight: bold;
-}
-
-.addNewBtn {
-  font-weight: bold;
-  font-size: 16pt;
-  border-radius: 20px;
-  border: none;
-  background: #2D232E;
-  width: 30%;
-  opacity: .7;
-  color: #E6EED6;
-  align-self: center;
-  justify-self: flex-end;
-}
-
-.addNewBtn:hover {
-  background: #534B52;
-  color: #E6EED6;
 }
 
 .gameList {
@@ -212,14 +191,14 @@ h1, h2, h3, h4, p, button, input, ul, li {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
+  font-family: 'Open Sans', sans-serif;
 }
 
 .gameContainer {
   width: 20vw;
   height: 35vw;
   margin: 20px 20px;
-  background: rgba(71,68,72, .7);
+  background: rgba(47,69,80, .3);
   position: relative;
   border-radius: 20px;
   overflow: scroll;
@@ -231,7 +210,7 @@ h1, h2, h3, h4, p, button, input, ul, li {
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
-  color: #F1F0EA;
+  color: #F4F4F9;;
 }
 
 .coverArt {
@@ -239,7 +218,7 @@ h1, h2, h3, h4, p, button, input, ul, li {
   max-height: 45%;
   margin-top: 20px;
   align-self: center;
-  border: 2px solid #2D232E;
+  border: 2px solid #586F7C;
 }
 
 .gameTitle {
@@ -264,21 +243,40 @@ h1, h2, h3, h4, p, button, input, ul, li {
 
 /* buttons */
 
+.addNewBtn {
+  font-weight: bold;
+  font-size: 16pt;
+  border-radius: 20px;
+  border: none;
+  background: #2F4550;
+  width: 30%;
+  opacity: .7;
+  color: #E6EED6;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+.addNewBtn:hover {
+  background: #B8DBD9;
+  color: #E6EED6;
+}
+
 .addBtn, .cancelBtn {
-  background: #2D232E;
+  background: #2F4550;
   opacity: .7;
   color: #E6EED6;
   margin: 20px;
   width: 20vw;
   height: 5vh;
   font-size: 25px;
+  border: none;
   border-radius: 20px;
   transition-duration: 0.2s;
 }
 
 .addBtn:hover, .cancelBtn:hover {
-  background: #534B52;
-  color: #E6EED6;
+  background: #B8DBD9;
+  color: #2F4550;
 }
 
 .deleteBtn {
@@ -289,15 +287,15 @@ h1, h2, h3, h4, p, button, input, ul, li {
   margin: 10px;
   border: none;
   background: none;
-  color: #2D232E;
+  color: #2F4550;
   font-size: 30px;
   font-weight: 800;
   opacity: .7;
   text-shadow:
-  -1px -1px 0 #F1F0EA,
-  1px -1px 0 #F1F0EA,
-  -1px 1px 0 #F1F0EA,
-  1px 1px 0 #F1F0EA;
+  -1px -1px 0 #F4F4F9,
+  1px -1px 0 #F4F4F9,
+  -1px 1px 0 #F4F4F9,
+  1px 1px 0 #F4F4F9;
 }
 
 .deleteBtn:hover {
@@ -311,14 +309,14 @@ h1, h2, h3, h4, p, button, input, ul, li {
   align-self: center;
   border: none;
   border-radius: 10pt;
-  background: #2D232E;
+  background: #2F4550;
   opacity: .7;
-  color: #F1F0EA;
+  color: #F4F4F9;
 }
 
 .editNoteBtn:hover, .moveBtn:hover {
-  background: #534B52;
-  color: #E6EED6;
+  background: #B8DBD9;
+  color: #2F4550;
 }
 
 .editNoteBtn {
@@ -334,9 +332,14 @@ h1, h2, h3, h4, p, button, input, ul, li {
 .cancelEditBtn {
   border: none;
   border-radius: 50pt;
-  background: #2D232E;
+  background: #2F4550;
   opacity: .7;
-  color: #F1F0EA;
+  color: #F4F4F9;
   margin: 0px 10px;
+}
+
+.cancelEditBtn:hover {
+  background: #B8DBD9;
+  color: #2F4550;
 }
 
