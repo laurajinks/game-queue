@@ -30,7 +30,6 @@ export default class Completed extends Component {
         axios.get(`${url}/api/completedGames`)
         .then(response => {
             this.setState({ games: response.data });
-            console.log(this.state.games)
         })
         .catch(err => console.log(err));
     }
@@ -56,14 +55,13 @@ export default class Completed extends Component {
             axios.put(`${url}/api/completedGames/${id}`, {notes: this.state.input})
             .then(response => {
                 this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
-                console.log(this.state.games)
             })
             .catch(err => console.log(err));
         }
     }
 
     cancelEdit () {
-        this.setState({showEdit: false})
+        this.setState({showEdit: false, displayEditBtn: true})
     }
 
     handleInput (e) {

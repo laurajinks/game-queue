@@ -21,7 +21,8 @@ const Game = props => {
                     {props.showEdit === true && <NoteInput note={props.note}
                                                 handleInput={props.handleInput}
                                                 updateNotes={props.updateNotes}
-                                                cancelEdit={props.cancelEdit}/>}<br></br>
+                                                cancelEdit={props.cancelEdit}
+                                                id={props.id}/>}<br></br>
 
                     {props.displayCompleteBtn === true && <button onClick={() => props.completeGame(props.id)}
                     className='moveBtn'>Game Completed</button>}

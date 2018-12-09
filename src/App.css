@@ -236,7 +236,7 @@ h1, h2, h3, h4, p, button, input, ul, li {
 
 .coverArt {
   max-width: 80%;
-  max-height: 60%;
+  max-height: 45%;
   margin-top: 20px;
   align-self: center;
   border: 2px solid #2D232E;
@@ -251,7 +251,8 @@ h1, h2, h3, h4, p, button, input, ul, li {
 
 .notes {
   margin: 10px auto;
-  max-height: 20%;
+  max-height: 30%;
+  padding: 15px;
   width: 90%;
   overflow: scroll;
 }

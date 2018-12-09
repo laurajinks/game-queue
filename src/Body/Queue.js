@@ -55,14 +55,13 @@ export default class Queue extends Component {
             axios.put(`${url}/api/games/${id}`, {notes: this.state.input})
             .then(response => {
                 this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
-                console.log(this.state.games)
             })
             .catch(err => console.log(err));
         }
     }
 
     cancelEdit () {
-        this.setState({showEdit: false})
+        this.setState({showEdit: false, displayEditBtn: true})
     }
 
     handleInput (e) {
@@ -93,7 +92,7 @@ export default class Queue extends Component {
                         updateNotes={this.updateNotes}
                         handleInput={this.handleInput}
                         displayEditBtn={this.state.displayEditBtn}
-                        returnToQueue={this.returnToQueue}
+                        completeGame={this.completeGame}
                         displayCompleteBtn={this.state.displayCompleteBtn}
                         displayQueueBtn={this.state.displayQueueBtn}
                         cancelEdit={this.cancelEdit}/>))}
