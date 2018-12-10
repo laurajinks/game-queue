@@ -1,33 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NoteInput from './NoteInput'
 
-const Game = props => {
+export default class Game extends Component {
+    constructor (props) {
+        super (props);
+
+        this.state = {
+            showEdit: false,
+            displayEditBtn: true,
+        }
+        this.displayInput = this.displayInput.bind(this);
+        this.cancelEdit = this.cancelEdit.bind(this);
+
+    }
+
+    displayInput () {
+        this.setState({ showEdit: true , displayEditBtn: false})
+    }
+
+    
+
+    cancelEdit () {
+        this.setState({showEdit: false, displayEditBtn: true})
+    }
+
+    
+
+    render () {
 
         return (
             <div className='gameContainer'>
 
-                <button onClick={() => props.deleteBtn(props.id)}
+                <button onClick={() => this.props.deleteBtn(this.props.id)}
                 className='deleteBtn'>X</button>
 
                 <div className='gameBody'>
-                <img className='coverArt' src={props.img} alt={props.title}></img>
-                <h2 className='gameTitle'>{props.title}</h2><br></br>
-                <p className='notes'>Notes: {props.notes}</p>
+                <img className='coverArt' src={this.props.img} alt={this.props.title}></img>
+                <h2 className='gameTitle'>{this.props.title}</h2><br></br>
+                <p className='notes'>Notes: {this.props.notes}</p>
 
                 <div className='gameFooter'>
-                    {props.displayEditBtn === true && <button onClick={props.displayInput}
+                    {this.state.displayEditBtn === true && <button onClick={this.displayInput}
                     className='editNoteBtn'>Edit Note</button>}
 
-                    {props.showEdit === true && <NoteInput note={props.note}
-                                                handleInput={props.handleInput}
-                                                updateNotes={props.updateNotes}
-                                                cancelEdit={props.cancelEdit}
-                                                id={props.id}/>}<br></br>
+                    {this.state.showEdit === true && <NoteInput note={this.props.note}
+                                                handleInput={this.props.handleInput}
+                                                updateNotes={this.props.updateNotes}
+                                                cancelEdit={this.cancelEdit}
+                                                id={this.props.id}/>}<br></br>
 
-                    {props.displayCompleteBtn === true && <button onClick={() => props.completeGame(props.id)}
+                    {this.props.displayCompleteBtn === true && <button onClick={() => this.props.completeGame(this.props.id)}
                     className='moveBtn'>Game Completed</button>}
 
-                    {props.displayQueueBtn === true && <button onClick={() => props.returnToQueue(props.id)}
+                    {this.props.displayQueueBtn === true && <button onClick={() => this.props.returnToQueue(this.props.id)}
                     className='moveBtn'>Return to Queue</button>}
                 </div>
 
@@ -35,5 +60,6 @@ const Game = props => {
             </div>
         )
     }
+}
 
-export default Game
+

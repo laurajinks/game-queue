@@ -10,19 +10,16 @@ export default class Queue extends Component {
 
         this.state = {
             games: [],
-            input:'',
-            showEdit: false,
-            displayEditBtn: true,
             displayCompleteBtn: true,
-            displayQueueBtn: false
+            displayQueueBtn: false,
+            input:'',
         }
         this.componentDidMount = this.componentDidMount.bind(this);
-        this.deleteBtn = this.deleteBtn.bind(this);
-        this.displayInput = this.displayInput.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.deleteBtn = this.deleteBtn.bind(this); 
+        this.completeGame = this.completeGame.bind(this);
         this.updateNotes = this.updateNotes.bind(this);
         this.handleInput = this.handleInput.bind(this);
-        this.completeGame = this.completeGame.bind(this);
-        this.cancelEdit = this.cancelEdit.bind(this);
     }
 
 
@@ -46,8 +43,16 @@ export default class Queue extends Component {
         axios.delete(`${url}/api/games/${id}`)
     }
 
-    displayInput () {
-        this.setState({ showEdit: true , displayEditBtn: false})
+    completeGame (id) {
+        axios.post(`${url}/api/games/${id}`)
+        .then(response => {
+            this.setState({ games: response.data })
+        })
+
+    }
+
+    handleInput (e) {
+        this.setState({ input: e.target.value });
     }
 
     updateNotes (e, id) {
@@ -58,22 +63,6 @@ export default class Queue extends Component {
             })
             .catch(err => console.log(err));
         }
-    }
-
-    cancelEdit () {
-        this.setState({showEdit: false, displayEditBtn: true})
-    }
-
-    handleInput (e) {
-        this.setState({ input: e.target.value });
-    }
-
-    completeGame (id) {
-        axios.post(`${url}/api/games/${id}`)
-        .then(response => {
-            this.setState({ games: response.data })
-        })
-
     }
 
     render () {
@@ -95,6 +84,7 @@ export default class Queue extends Component {
                         completeGame={this.completeGame}
                         displayCompleteBtn={this.state.displayCompleteBtn}
                         displayQueueBtn={this.state.displayQueueBtn}
+                        updateNotes={this.updateNotes}
                         cancelEdit={this.cancelEdit}/>))}
             </div>
         );
