@@ -15,11 +15,10 @@ export default class Game extends Component {
 
     }
 
+    //Note editing functions
     displayInput () {
         this.setState({ showEdit: true , displayEditBtn: false})
     }
-
-    
 
     cancelEdit () {
         this.setState({showEdit: false, displayEditBtn: true})

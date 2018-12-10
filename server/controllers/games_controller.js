@@ -56,7 +56,6 @@ searchGames = (req, res, next) => {
     axios.get(`http://www.giantbomb.com/api/search?api_key=${apiKey}&format=json&query=${search}&resources=game`)
     .then( (response) => {
         response.data.results.forEach(result => {
-        console.log('search results: ', searchResults);
         let game = {title: result.name,
         key: result.id,
         id: result.id,
@@ -70,6 +69,7 @@ searchGames = (req, res, next) => {
     .catch(err => console.log(err));
 }
 
+//Add new game from search results
 addNew = (req, res, next) => {
     games.push(req.body);
     res.status(200).json(games);

@@ -39,18 +39,20 @@ export default class Queue extends Component {
         .catch(err => console.log(err));
     }
 
+    //Delete game from back end
     deleteBtn (id) {
         axios.delete(`${url}/api/games/${id}`)
     }
 
+    //Move game to Completed list
     completeGame (id) {
         axios.post(`${url}/api/games/${id}`)
         .then(response => {
             this.setState({ games: response.data })
         })
-
     }
 
+    //functions for editing Notes
     handleInput (e) {
         this.setState({ input: e.target.value });
     }

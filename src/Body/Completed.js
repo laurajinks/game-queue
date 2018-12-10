@@ -38,10 +38,12 @@ export default class Completed extends Component {
         .catch(err => console.log(err));
     }
 
+    //delete game from back end
     deleteBtn (id) {
         axios.delete(`${url}/api/completedGames/${id}`)
     }
 
+    //move game to Queue list
     returnToQueue (id) {
         axios.post(`${url}/api/completedGames/${id}`)
         .then(response => {
@@ -49,6 +51,7 @@ export default class Completed extends Component {
         })
     }
 
+    //functions for editing Notes
     handleInput (e) {
         this.setState({ input: e.target.value });
     }
@@ -79,7 +82,7 @@ export default class Completed extends Component {
                     updateNotes={this.updateNotes}
                     handleInput={this.handleInput}
                     displayEditBtn={this.state.displayEditBtn}
-                    completeGame={this.completeGame}
+                    returnToQueue={this.returnToQueue}
                     displayCompleteBtn={this.state.displayCompleteBtn}
                     displayQueueBtn={this.state.displayQueueBtn}
                     updateNotes={this.updateNotes}

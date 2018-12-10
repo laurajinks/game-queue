@@ -27,6 +27,7 @@ class App extends Component {
 
   }
 
+  //Display search bar
   handleAdd () {
     this.setState({ displaySearch: true, displayQueue: false , displayCloseBtn: true, displayAddBtn: false})
   }
@@ -40,6 +41,7 @@ class App extends Component {
     this.setState({ displaySearch: false, displayQueue: true, displayCloseBtn: false, displayAddBtn: true })
 }
 
+  //Close search bar
   handleClose () {
     this.setState({ displaySearch: false, displayQueue: true, displayCloseBtn: false, displayAddBtn: true })
   }
@@ -54,6 +56,7 @@ class App extends Component {
     this.setState({ displayQueue: false, displayCompleted: true, displayAddBtn: false, displaySearch: false, displayCloseBtn: false })
   }
 
+  //Click on logo to return to home view
   logoClick () {
     this.setState({ displayQueue: true, displayCompleted: false, displayAddBtn: true, displaySearch: false, displayCloseBtn: false })
   }
