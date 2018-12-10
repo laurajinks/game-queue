@@ -34,7 +34,6 @@ class App extends Component {
 
   //Add game from search results to Queue
   addNew (game) {
-    console.log(game)
     axios.post(`${url}/api/games`, game)
     this.setState({  results: [] });
     axios.get(`${url}/api/games`);

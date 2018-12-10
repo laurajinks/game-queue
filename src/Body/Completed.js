@@ -73,9 +73,11 @@ export default class Completed extends Component {
                 {this.state.games.map(game => (
                     <Game key={game.id}
                     id={game.id}
+                    guid={game.guid}
                     title={game.title}
                     img={game.img}
                     notes={game.notes}
+                    description={game.description}
                     showEdit={this.state.showEdit}
                     deleteBtn={this.deleteBtn}
                     displayInput={this.displayInput}

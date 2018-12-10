@@ -75,8 +75,10 @@ export default class Queue extends Component {
                 {this.state.games.map(game => (
                     <Game key={game.id}
                         id={game.id}
+                        guid={game.guid}
                         title={game.title}
                         img={game.img}
+                        description={game.description}
                         notes={game.notes}
                         showEdit={this.state.showEdit}
                         deleteBtn={this.deleteBtn}

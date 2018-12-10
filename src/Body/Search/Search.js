@@ -23,7 +23,6 @@ export default class Search extends Component {
             axios.get(`${url}/api/search/?search=${e.target.value}`)
             .then(response => {
                 this.setState({results: response.data});
-                console.log(this.state.results)
             })
             .catch(err => console.log(err));
 
@@ -42,10 +41,12 @@ export default class Search extends Component {
                 {this.state.results.map(result => (
                     <Result key={result.key}
                         id={result.id}
+                        guid={result.guid}
                         title={result.title}
                         img={result.img}
                         notes={result.notes}
-                        addNew={this.props.addNew}/>))}
+                        addNew={this.props.addNew}
+                        description={result.description}/>))}
                 
             </div>
         )

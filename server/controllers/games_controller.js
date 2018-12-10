@@ -12,7 +12,9 @@ axios.get(`https://www.giantbomb.com/api/game/3030-42926/?api_key=${apiKey}&form
 .then( (response) => {
     let game = {title: response.data.results.name,
     id: response.data.results.id,
+    guid: response.data.results.guid,
     img: response.data.results.image.original_url,
+    description: response.data.results.description,
     notes: ''}
     games.push(game)
     })
@@ -23,7 +25,9 @@ axios.get(`https://www.giantbomb.com/api/game/3030-13053/?api_key=${apiKey}&form
 .then( (response) => {
     let game = {title: response.data.results.name,
     id: response.data.results.id,
+    guid: response.data.results.guid,
     img: response.data.results.image.original_url,
+    description: response.data.results.description,
     notes: ''}
     games.push(game)
     })
@@ -34,7 +38,9 @@ axios.get(`https://www.giantbomb.com/api/game/3030-13594/?api_key=${apiKey}&form
 .then( (response) => {
     let game = {title: response.data.results.name,
     id: response.data.results.id,
+    guid: response.data.results.guid,
     img: response.data.results.image.original_url,
+    description: response.data.results.description,
     notes: ''}
     games.push(game)
     })
@@ -59,7 +65,9 @@ searchGames = (req, res, next) => {
         let game = {title: result.name,
         key: result.id,
         id: result.id,
+        guid: result.guid,
         img: result.image.original_url,
+        description: result.description,
         notes: ''}
         searchResults.push(game);
         })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NoteInput from './NoteInput'
+import Description from './Description'
 
 export default class Game extends Component {
     constructor (props) {
@@ -8,11 +9,15 @@ export default class Game extends Component {
         this.state = {
             showEdit: false,
             displayEditBtn: true,
+            showDescription: false,
+            description: props.description
         }
         this.displayInput = this.displayInput.bind(this);
         this.cancelEdit = this.cancelEdit.bind(this);
         this.removeEdit = this.removeEdit.bind(this);
-
+        this.showDescription = this.showDescription.bind(this);
+        this.closeDescription = this.closeDescription.bind(this);
+        this.formatDescription = this.formatDescription.bind(this);
     }
 
     //Note editing functions
@@ -28,18 +33,38 @@ export default class Game extends Component {
         this.setState({showEdit: false, displayEditBtn: true})
     }
 
+    showDescription () {
+        this.setState({showDescription: true})
+    }
+
+    closeDescription () {
+        this.setState({showDescription: false})
+    }
+
+    formatDescription (text) {
+        let html = text;
+        let div = document.createElement('div');
+        div.innerHTML = html;
+        let description = div.textContent || div.innerText || '';
+        if(description.length > 1000) {
+            description = description.substring(8, 1008)+'...'
+        }
+        return description;
+    }
     
-
     render () {
-
         return (
             <div className='gameContainer'>
-
+                {this.state.showDescription && <Description formatDescription={this.formatDescription}
+                                                            description={this.props.description}
+                                                            closeDescription={this.closeDescription}
+                                                            guid={this.props.guid}/>}
                 <button onClick={() => this.props.deleteBtn(this.props.id)}
                 className='deleteBtn'>X</button>
 
                 <div className='gameBody'>
-                <img className='coverArt' src={this.props.img} alt={this.props.title}></img>
+                <img className='coverArt' src={this.props.img} alt={this.props.title}
+                onClick={this.showDescription}></img>
                 <h2 className='gameTitle'>{this.props.title}</h2><br></br>
                 <p className='notes'>Notes: {this.props.notes}</p>
 

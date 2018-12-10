@@ -224,7 +224,7 @@ table {
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
-  color: #F4F4F9;;
+  color: #F4F4F9;
 }
 
 .coverArt {
@@ -233,6 +233,49 @@ table {
   margin-top: 20px;
   align-self: center;
   border: 2px solid #586F7C;
+  cursor: pointer;
+}
+
+.descriptionContainer {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index: 3;
+  background: rgba(47,69,80, .9);
+  color: #F4F4F9;
+  overflow: scroll;
+}
+
+.description {
+  max-width: 90%;
+  max-height: 90%;
+  overflow: scroll;
+  margin: auto;
+  line-height: 1.5;
+}
+
+.descriptionTitle {
+  margin-bottom: 10px;
+}
+
+.linkContainer {
+  width: 100%;
+}
+
+.moreInfoLink {
+  color: #B8DBD9;
+  cursor: pointer;
+  width: 100%;
+}
+
+.moreInfoLink:hover {
+  text-shadow:
+  -.5px -.5px 0 #F4F4F9,
+  -.5px -.5px 0 #F4F4F9,
+  -.5px -.5px 0 #F4F4F9,
+  -.5px -.5px 0 #F4F4F9;
 }
 
 .gameTitle {
@@ -361,3 +404,25 @@ table {
   color: #2F4550;
 }
 
+.closeDescriptionBtn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 4;
+  margin: 10px;
+  border: none;
+  background: none;
+  color: #2F4550;
+  font-size: 15px;
+  font-weight: 800;
+  opacity: .7;
+  text-shadow:
+  -1px -1px 0 #F4F4F9,
+  1px -1px 0 #F4F4F9,
+  -1px 1px 0 #F4F4F9,
+  1px 1px 0 #F4F4F9;
+}
+
+.closeDescriptionBtn:hover {
+  color: #A72608;
+}
