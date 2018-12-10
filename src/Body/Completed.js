@@ -54,7 +54,7 @@ export default class Completed extends Component {
     }
 
     updateNotes (e, id) {
-            axios.put(`${url}/api/games/${id}`, {notes: this.state.input})
+            axios.put(`${url}/api/completedGames/${id}`, {notes: this.state.input})
             .then(response => {
                 this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
             })
@@ -69,17 +69,21 @@ export default class Completed extends Component {
                 <h1 className='pageTitle'>Completed Games</h1>
                 {this.state.games.map(game => (
                     <Game key={game.id}
-                        id={game.id}
-                        title={game.title}
-                        img={game.img}
-                        notes={game.notes}
-                        showEdit={this.state.showEdit}
-                        deleteBtn={this.deleteBtn}
-                        displayEditBtn={this.state.displayEditBtn}
-                        returnToQueue={this.returnToQueue}
-                        displayCompleteBtn={this.state.displayCompleteBtn}
-                        updateNotes={this.updateNotes}
-                        displayQueueBtn={this.state.displayQueueBtn}/>))}
+                    id={game.id}
+                    title={game.title}
+                    img={game.img}
+                    notes={game.notes}
+                    showEdit={this.state.showEdit}
+                    deleteBtn={this.deleteBtn}
+                    displayInput={this.displayInput}
+                    updateNotes={this.updateNotes}
+                    handleInput={this.handleInput}
+                    displayEditBtn={this.state.displayEditBtn}
+                    completeGame={this.completeGame}
+                    displayCompleteBtn={this.state.displayCompleteBtn}
+                    displayQueueBtn={this.state.displayQueueBtn}
+                    updateNotes={this.updateNotes}
+                    cancelEdit={this.cancelEdit}/>))}
             </div>
         )
     }
