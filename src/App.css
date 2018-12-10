@@ -86,7 +86,7 @@ table {
 
 .header {
   width: 100vw;
-  height: 10vh;
+  height: 7vh;
   background: rgba(47,69,80, .15);
   display: flex;
   align-items: center;

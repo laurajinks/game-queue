@@ -48,12 +48,13 @@ export default class Game extends Component {
                     {this.state.displayEditBtn === true && <button onClick={this.displayInput}
                     className='editNoteBtn'>Edit Note</button>}
 
-                    {this.state.showEdit === true && <NoteInput note={this.props.note}
+                    {this.state.showEdit === true && <NoteInput
                                                 handleInput={this.props.handleInput}
                                                 updateNotes={this.props.updateNotes}
                                                 cancelEdit={this.cancelEdit}
                                                 removeEdit={this.removeEdit}
-                                                id={this.props.id}/>}<br></br>
+                                                id={this.props.id}
+                                                notes={this.props.notes}/>}<br></br>
 
                     {this.props.displayCompleteBtn === true && <button onClick={() => this.props.completeGame(this.props.id)}
                     className='moveBtn'>Game Completed</button>}
