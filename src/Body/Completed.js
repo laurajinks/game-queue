@@ -54,14 +54,12 @@ export default class Completed extends Component {
     }
 
     updateNotes (e, id) {
-        if (e.key === 'Enter') {
             axios.put(`${url}/api/games/${id}`, {notes: this.state.input})
             .then(response => {
                 this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
             })
             .catch(err => console.log(err));
         }
-    }
 
 
 

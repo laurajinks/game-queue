@@ -11,6 +11,7 @@ export default class Game extends Component {
         }
         this.displayInput = this.displayInput.bind(this);
         this.cancelEdit = this.cancelEdit.bind(this);
+        this.removeEdit = this.removeEdit.bind(this);
 
     }
 
@@ -21,6 +22,10 @@ export default class Game extends Component {
     
 
     cancelEdit () {
+        this.setState({showEdit: false, displayEditBtn: true})
+    }
+
+    removeEdit () {
         this.setState({showEdit: false, displayEditBtn: true})
     }
 
@@ -47,6 +52,7 @@ export default class Game extends Component {
                                                 handleInput={this.props.handleInput}
                                                 updateNotes={this.props.updateNotes}
                                                 cancelEdit={this.cancelEdit}
+                                                removeEdit={this.removeEdit}
                                                 id={this.props.id}/>}<br></br>
 
                     {this.props.displayCompleteBtn === true && <button onClick={() => this.props.completeGame(this.props.id)}
