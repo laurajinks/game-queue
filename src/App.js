@@ -64,11 +64,11 @@ class App extends Component {
         <Header handleQueue={this.handleQueue}
                 handleCompleted={this.handleCompleted}
                 logoClick={this.logoClick} />
-        {this.state.displayAddBtn === true && <button className='addBtn' onClick={this.handleAdd}>Add New Game</button>}
         {this.state.displayCloseBtn === true && <button onClick={this.handleClose} 
         className='cancelBtn'>Cancel</button>}
         {this.state.displaySearch === true && <Search addNew={this.addNew}/>}
-        {this.state.displayQueue === true && <Queue />}
+        {this.state.displayQueue === true && <Queue handleAdd={this.handleAdd}
+                                                    displayAddBtn={this.state.displayAddBtn}/>}
         {this.state.displayCompleted === true && <Completed />}
       </div>
     );

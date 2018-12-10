@@ -132,6 +132,10 @@ table {
   font-family: 'Sonsie One', cursive;
 }
 
+.addBtnContainer {
+  width: 100vw;
+}
+
 /* Styling for Search Results */
 
 .searchComponent {

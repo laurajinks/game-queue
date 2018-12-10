@@ -67,6 +67,9 @@ export default class Queue extends Component {
         return (
             <div className='gameList'>
                 <h1 className='pageTitle'>Queue</h1><br></br>
+                <div className='addBtnContainer'>
+                {this.props.displayAddBtn === true && <button className='addBtn' onClick={this.props.handleAdd}>Add New Game</button>}
+                </div>
                 {this.state.games.map(game => (
                     <Game key={game.id}
                         id={game.id}
