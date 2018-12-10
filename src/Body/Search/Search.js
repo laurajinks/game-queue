@@ -14,7 +14,6 @@ export default class Search extends Component {
         }
 
         this.handleEnter = this.handleEnter.bind(this);
-
     }
 
     //fires when Enter key is hit after entering search term

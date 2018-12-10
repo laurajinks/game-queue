@@ -89,7 +89,6 @@ export default class Queue extends Component {
                         completeGame={this.completeGame}
                         displayCompleteBtn={this.state.displayCompleteBtn}
                         displayQueueBtn={this.state.displayQueueBtn}
-                        updateNotes={this.updateNotes}
                         cancelEdit={this.cancelEdit}/>))}
             </div>
         );

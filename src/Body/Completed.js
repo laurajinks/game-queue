@@ -87,7 +87,6 @@ export default class Completed extends Component {
                     returnToQueue={this.returnToQueue}
                     displayCompleteBtn={this.state.displayCompleteBtn}
                     displayQueueBtn={this.state.displayQueueBtn}
-                    updateNotes={this.updateNotes}
                     cancelEdit={this.cancelEdit}/>))}
             </div>
         )

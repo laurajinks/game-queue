@@ -41,6 +41,7 @@ export default class Game extends Component {
         this.setState({showDescription: false})
     }
 
+    //take description string with HTML tags, remove tags, cut length down to 1000 characters
     formatDescription (text) {
         let html = text;
         let div = document.createElement('div');
