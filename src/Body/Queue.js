@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Game from './Game'
 
@@ -70,7 +71,7 @@ export default class Queue extends Component {
             <div className='gameList'>
                 <h1 className='pageTitle'>Queue</h1><br></br>
                 <div className='addBtnContainer'>
-                {this.props.displayAddBtn === true && <button className='addBtn' onClick={this.props.handleAdd}>Add New Game</button>}
+                <Link to='/search'><button className='addBtn'>Add New Game</button></Link>
                 </div>
                 {this.state.games.map(game => (
                     <Game key={game.id}

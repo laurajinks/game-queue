@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Result from './Result'
 const url = "http://localhost:3001";
@@ -14,6 +15,7 @@ export default class Search extends Component {
         }
 
         this.handleEnter = this.handleEnter.bind(this);
+        this.addNew = this.addNew.bind(this);
     }
 
     //fires when Enter key is hit after entering search term
@@ -28,13 +30,21 @@ export default class Search extends Component {
         }
     }
 
-    
+    //Add game from search results to Queue
+    addNew (game) {
+        axios.post(`${url}/api/games`, game)
+        this.setState({  results: [] });
+        axios.get(`${url}/api/games`);
+        
+}
 
-    render (props) {
+    render () {
         return (
+            <div>
+                <Link to='/'><button className='cancelBtn'>Cancel</button></Link>
             <div className='searchComponent'>
-            <div className='searchBar'>
-            <input className='searchInput' type='text' placeholder='Enter Game Title'
+                <div className='searchBar'>
+                <input className='searchInput' type='text' placeholder='Enter Game Title'
                 onKeyUp={this.handleEnter}></input>
             </div>
                 {this.state.results.map(result => (
@@ -44,9 +54,10 @@ export default class Search extends Component {
                         title={result.title}
                         img={result.img}
                         notes={result.notes}
-                        addNew={this.props.addNew}
+                        addNew={this.addNew}
                         description={result.description}/>))}
                 
+            </div>
             </div>
         )
     }
