@@ -24,6 +24,7 @@ export default class Game extends Component {
         this.formatDescription = this.formatDescription.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.updateNotes = this.updateNotes.bind(this);
+        this.deleteGame = this.deleteGame.bind(this);
     }
 
     //Note editing functions
@@ -50,6 +51,11 @@ export default class Game extends Component {
     //functions for editing Notes
     handleInput (e) {
         this.setState({ input: e.target.value });
+    }
+
+    //Delete game from back end
+    deleteGame (id) {
+        axios.delete(`${url}/api/games/${id}`)
     }
 
     updateNotes (e, id) {
@@ -79,7 +85,7 @@ export default class Game extends Component {
                                                             description={this.props.description}
                                                             closeDescription={this.closeDescription}
                                                             guid={this.props.guid}/>}
-                <button onClick={() => this.props.deleteBtn(this.props.id)}
+                <button onClick={() => this.deleteGame(this.props.id)}
                 className='deleteBtn'>X</button>
 
                 <div className='gameBody'>

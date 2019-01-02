@@ -1,9 +1,6 @@
 const axios = require('axios');
 const apiKey = 'a64fd118e506b5420e03926b6b331ee7ab3c268b'
 
-
-const games = [];
-const completedGames = [];
 let searchResults = [];
 
 module.exports = { 
@@ -78,18 +75,18 @@ editNote: (req, res) => {
 //functions to move games between Queue and Completed
 
 completeGame: (req, res, next) => {
-    let index = games.findIndex(game => +game.id === +req.params.id);
-    let game = games[index];
-    games.splice(index, 1);
-    completedGames.push(game);
-    res.json(games);
+    req.app.get('db').complete_game([req.params.id])
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
 },
 
 returnToQueue: (req, res, next) => {
-    let index = completedGames.findIndex(game => +game.id === +req.params.id);
-    let game = completedGames[index];
-    completedGames.splice(index, 1);
-    games.push(game);
-    res.json(completedGames);
+    req.app.get('db').return_to_queue([req.params.id])
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
     }
 }

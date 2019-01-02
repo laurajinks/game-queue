@@ -29,8 +29,8 @@ app.get('/api/games', getGames);
 app.get('/api/completedGames', getCompletedGames);
 app.get('/api/search', searchGames);
 app.post('/api/games', addNew);
-app.post('/api/games/:id', completeGame);
-app.post('/api/completedGames/:id', returnToQueue);
+app.put('/api/gameStatus/:id', completeGame);
+app.put('/api/completedGameStatus/:id', returnToQueue);
 app.delete('/api/games/:id', deleteGame);
 app.put('/api/games/:id', editNote);
 

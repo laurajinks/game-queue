@@ -16,7 +16,6 @@ export default class Queue extends Component {
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
-        this.deleteBtn = this.deleteBtn.bind(this); 
         this.completeGame = this.completeGame.bind(this);
     }
 
@@ -37,14 +36,9 @@ export default class Queue extends Component {
         .catch(err => console.log(err));
     }
 
-    //Delete game from back end
-    deleteBtn (id) {
-        axios.delete(`${url}/api/games/${id}`)
-    }
-
     //Move game to Completed list
     completeGame (id) {
-        axios.post(`${url}/api/games/${id}`)
+        axios.post(`${url}/api/gameStatus/${id}`)
         .then(response => {
             this.setState({ games: response.data })
         })
@@ -66,7 +60,6 @@ export default class Queue extends Component {
                         description={game.description}
                         notes={game.notes}
                         showEdit={this.state.showEdit}
-                        deleteBtn={this.deleteBtn}
                         completeGame={this.completeGame}
                         displayCompleteBtn={this.state.displayCompleteBtn}
                         displayQueueBtn={this.state.displayQueueBtn}
