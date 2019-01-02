@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import NoteInput from './NoteInput'
-import Description from './Description'
+import NoteInput from './NoteInput';
+import Description from './Description';
+import axios from 'axios';
+
+const url = "http://localhost:3001";
 
 export default class Game extends Component {
     constructor (props) {
         super (props);
 
         this.state = {
+            input: '',
             showEdit: false,
             displayEditBtn: true,
             showDescription: false,
-            description: props.description
+            description: this.props.description
         }
         this.displayInput = this.displayInput.bind(this);
         this.cancelEdit = this.cancelEdit.bind(this);
@@ -18,6 +22,8 @@ export default class Game extends Component {
         this.showDescription = this.showDescription.bind(this);
         this.closeDescription = this.closeDescription.bind(this);
         this.formatDescription = this.formatDescription.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.updateNotes = this.updateNotes.bind(this);
     }
 
     //Note editing functions
@@ -40,6 +46,19 @@ export default class Game extends Component {
     closeDescription () {
         this.setState({showDescription: false})
     }
+
+    //functions for editing Notes
+    handleInput (e) {
+        this.setState({ input: e.target.value });
+    }
+
+    updateNotes (e, id) {
+            axios.put(`${url}/api/games/${id}`, {notes: this.state.input})
+            .then(response => {
+                this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
+            })
+            .catch(err => console.log(err));
+        }
 
     //take description string with HTML tags, remove tags, cut length down to 1000 characters
     formatDescription (text) {
@@ -74,8 +93,8 @@ export default class Game extends Component {
                     className='editNoteBtn'>Edit Note</button>}
 
                     {this.state.showEdit === true && <NoteInput
-                                                handleInput={this.props.handleInput}
-                                                updateNotes={this.props.updateNotes}
+                                                handleInput={this.handleInput}
+                                                updateNotes={this.updateNotes}
                                                 cancelEdit={this.cancelEdit}
                                                 removeEdit={this.removeEdit}
                                                 id={this.props.id}

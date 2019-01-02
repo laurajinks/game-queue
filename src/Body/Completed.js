@@ -12,14 +12,11 @@ export default class Completed extends Component {
             games: [],
             displayCompleteBtn: false,
             displayQueueBtn: true,
-            input:''
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.deleteBtn = this.deleteBtn.bind(this);
         this.returnToQueue = this.returnToQueue.bind(this);
-        this.updateNotes = this.updateNotes.bind(this);
-        this.handleInput = this.handleInput.bind(this);
     }
 
     componentDidMount () {
@@ -51,21 +48,6 @@ export default class Completed extends Component {
         })
     }
 
-    //functions for editing Notes
-    handleInput (e) {
-        this.setState({ input: e.target.value });
-    }
-
-    updateNotes (e, id) {
-            axios.put(`${url}/api/completedGames/${id}`, {notes: this.state.input})
-            .then(response => {
-                this.setState({ games: response.data, input: '', showEdit: false, displayEditBtn: true });
-            })
-            .catch(err => console.log(err));
-        }
-
-
-
     render () {
         return (
             <div className='gameList'>
@@ -81,9 +63,6 @@ export default class Completed extends Component {
                     showEdit={this.state.showEdit}
                     deleteBtn={this.deleteBtn}
                     displayInput={this.displayInput}
-                    updateNotes={this.updateNotes}
-                    handleInput={this.handleInput}
-                    displayEditBtn={this.state.displayEditBtn}
                     returnToQueue={this.returnToQueue}
                     displayCompleteBtn={this.state.displayCompleteBtn}
                     displayQueueBtn={this.state.displayQueueBtn}
