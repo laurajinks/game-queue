@@ -55,7 +55,8 @@ export default class Search extends Component {
                         img={result.img}
                         notes={result.notes}
                         addNew={this.addNew}
-                        description={result.description}/>))}
+                        description={result.description}
+                        queue={result.queue}/>))}
                 
             </div>
             </div>

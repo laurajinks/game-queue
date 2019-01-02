@@ -16,7 +16,8 @@ const Result = (props) => {
                                                 description: props.description,
                                                 title: props.title,
                                                 img: props.img,
-                                                notes: props.notes})}>+</button>
+                                                notes: props.notes,
+                                                queue: props.queue})}>+</button>
                 </Link>
             </div>
         </div>

@@ -1,7 +1,8 @@
+require('dotenv').config();
 const {json} = require('body-parser');
 const express = require('express');
+const massive = require('massive');
 const cors = require('cors');
-const axios = require('axios');
 const {getGames} = require('./controllers/games_controller');
 const {getCompletedGames} = require('./controllers/games_controller');
 const {searchGames} = require('./controllers/games_controller');
@@ -18,6 +19,13 @@ const apiKey = 'a64fd118e506b5420e03926b6b331ee7ab3c268b'
 
 app.use(json());
 app.use(cors());
+
+massive(process.env.CONNECTION_STRING)
+.then(db => {
+    app.set('db', db);
+    console.log('Database Connected');
+})
+.catch(err => console.log(err));
 
 app.get('/api/games', getGames);
 app.get('/api/completedGames', getCompletedGames);
