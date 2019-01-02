@@ -6,46 +6,6 @@ const games = [];
 const completedGames = [];
 let searchResults = [];
 
-// //Get initial games for demo purposes
-// // Kingdom Hearts III
-// axios.get(`https://www.giantbomb.com/api/game/3030-42926/?api_key=${apiKey}&format=json`)
-// .then( (response) => {
-//     let game = {title: response.data.results.name,
-//     id: response.data.results.id,
-//     guid: response.data.results.guid,
-//     img: response.data.results.image.original_url,
-//     description: response.data.results.description,
-//     notes: ''}
-//     games.push(game)
-//     })
-//     .catch(err => console.log(err))
-
-// //Final Fantasy VII
-// axios.get(`https://www.giantbomb.com/api/game/3030-13053/?api_key=${apiKey}&format=json`)
-// .then( (response) => {
-//     let game = {title: response.data.results.name,
-//     id: response.data.results.id,
-//     guid: response.data.results.guid,
-//     img: response.data.results.image.original_url,
-//     description: response.data.results.description,
-//     notes: ''}
-//     games.push(game)
-//     })
-// .catch(err => console.log(err))
-
-// //LoZ Majora's Mask
-// axios.get(`https://www.giantbomb.com/api/game/3030-13594/?api_key=${apiKey}&format=json`)
-// .then( (response) => {
-//     let game = {title: response.data.results.name,
-//     id: response.data.results.id,
-//     guid: response.data.results.guid,
-//     img: response.data.results.image.original_url,
-//     description: response.data.results.description,
-//     notes: ''}
-//     games.push(game)
-//     })
-// .catch(err => console.log(err))
-
 module.exports = { 
 
 // Retrieve games from database to display in list
@@ -95,37 +55,24 @@ addNew: (req, res) => {
     .catch(err => console.log(err))
 },
 
-// addNew: (req, res, next) => {
-//     games.push(req.body);
-//     res.status(200).json(games);
-// }
+//delete game from either queue or completed
 
-//delete functions
-
-deleteGame: (req, res, next) => {
-    const index = games.findIndex(game => +game.id === +req.params.id);
-    games.splice(index, 1);
-    res.json(games);
-},
-
-deleteCompletedGame: (req, res, next) => {
-    const index = completedGames.findIndex(game => +game.id === +req.params.id);
-    completedGames.splice(index, 1);
-    res.json(completedGames);
+deleteGame: (req, res) => {
+    req.app.get('db').delete_game(req.params.id)
+    .then(() => {
+        res.status(200)
+    })
+    .catch(err => console.log(err))
 },
 
 //edit notes functions
 
-editNote: (req, res, next) => {
-    games.find(game => +game.id === +req.params.id && 
-        Object.assign(game, req.body));
-    res.json(games);
-},
-
-editCompletedNote: (req, res, next) => {
-    completedGames.find(game => +game.id === +req.params.id && 
-        Object.assign(game, req.body));
-    res.json(completedGames);
+editNote: (req, res) => {
+    req.app.get('db').update_notes([req.params.id, req.body.notes])
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
 },
 
 //functions to move games between Queue and Completed

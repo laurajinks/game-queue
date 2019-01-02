@@ -37,7 +37,7 @@ export default class Completed extends Component {
 
     //delete game from back end
     deleteBtn (id) {
-        axios.delete(`${url}/api/completedGames/${id}`)
+        axios.delete(`${url}/api/games/${id}`)
     }
 
     //move game to Queue list
