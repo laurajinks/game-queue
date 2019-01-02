@@ -6,48 +6,47 @@ const games = [];
 const completedGames = [];
 let searchResults = [];
 
-//Get initial games for demo purposes
-// Kingdom Hearts III
-axios.get(`https://www.giantbomb.com/api/game/3030-42926/?api_key=${apiKey}&format=json`)
-.then( (response) => {
-    let game = {title: response.data.results.name,
-    id: response.data.results.id,
-    guid: response.data.results.guid,
-    img: response.data.results.image.original_url,
-    description: response.data.results.description,
-    notes: ''}
-    games.push(game)
-    })
-    .catch(err => console.log(err))
+// //Get initial games for demo purposes
+// // Kingdom Hearts III
+// axios.get(`https://www.giantbomb.com/api/game/3030-42926/?api_key=${apiKey}&format=json`)
+// .then( (response) => {
+//     let game = {title: response.data.results.name,
+//     id: response.data.results.id,
+//     guid: response.data.results.guid,
+//     img: response.data.results.image.original_url,
+//     description: response.data.results.description,
+//     notes: ''}
+//     games.push(game)
+//     })
+//     .catch(err => console.log(err))
 
-//Final Fantasy VII
-axios.get(`https://www.giantbomb.com/api/game/3030-13053/?api_key=${apiKey}&format=json`)
-.then( (response) => {
-    let game = {title: response.data.results.name,
-    id: response.data.results.id,
-    guid: response.data.results.guid,
-    img: response.data.results.image.original_url,
-    description: response.data.results.description,
-    notes: ''}
-    games.push(game)
-    })
-.catch(err => console.log(err))
+// //Final Fantasy VII
+// axios.get(`https://www.giantbomb.com/api/game/3030-13053/?api_key=${apiKey}&format=json`)
+// .then( (response) => {
+//     let game = {title: response.data.results.name,
+//     id: response.data.results.id,
+//     guid: response.data.results.guid,
+//     img: response.data.results.image.original_url,
+//     description: response.data.results.description,
+//     notes: ''}
+//     games.push(game)
+//     })
+// .catch(err => console.log(err))
 
-//LoZ Majora's Mask
-axios.get(`https://www.giantbomb.com/api/game/3030-13594/?api_key=${apiKey}&format=json`)
-.then( (response) => {
-    let game = {title: response.data.results.name,
-    id: response.data.results.id,
-    guid: response.data.results.guid,
-    img: response.data.results.image.original_url,
-    description: response.data.results.description,
-    notes: ''}
-    games.push(game)
-    })
-.catch(err => console.log(err))
+// //LoZ Majora's Mask
+// axios.get(`https://www.giantbomb.com/api/game/3030-13594/?api_key=${apiKey}&format=json`)
+// .then( (response) => {
+//     let game = {title: response.data.results.name,
+//     id: response.data.results.id,
+//     guid: response.data.results.guid,
+//     img: response.data.results.image.original_url,
+//     description: response.data.results.description,
+//     notes: ''}
+//     games.push(game)
+//     })
+// .catch(err => console.log(err))
 
 module.exports = { 
-
 
 // Retrieve games from database to display in list
     getGames: (req, res) => {
@@ -57,22 +56,13 @@ module.exports = {
     })
     .catch(err => console.log(err))},
 
-    getCompleted: (req, res) => {
+    getCompletedGames: (req, res) => {
         req.app.get('db').get_completed()
     .then((games) => {
         res.status(200).json(games)
     })
     .catch(err => console.log(err))
     },
-
-// getGames: (req, res, next) => {
-//     res.status(200).json(games);
-//         },
-
-//Retrieve completed games in local API to display in list
-getCompletedGames: (req, res, next) => {
-    res.status(200).json(completedGames);
-},
 
 // Search GiantBomb API for game entered in search bar
 searchGames: (req, res, next) => {
