@@ -106,10 +106,10 @@ export default class Game extends Component {
                                                 id={this.props.id}
                                                 notes={this.props.notes}/>}<br></br>
 
-                    {this.props.displayCompleteBtn === true && <button onClick={() => this.props.completeGame(this.props.id)}
+                    {this.props.queue === true && <button onClick={() => this.props.completeGame(this.props.id)}
                     className='moveBtn'>Game Completed</button>}
 
-                    {this.props.displayQueueBtn === true && <button onClick={() => this.props.returnToQueue(this.props.id)}
+                    {this.props.queue === false && <button onClick={() => this.props.returnToQueue(this.props.id)}
                     className='moveBtn'>Return to Queue</button>}
                 </div>
 

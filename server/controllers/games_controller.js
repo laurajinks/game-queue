@@ -1,5 +1,6 @@
+require('dotenv').config();
 const axios = require('axios');
-const apiKey = 'a64fd118e506b5420e03926b6b331ee7ab3c268b'
+const apiKey = process.env.API_KEY;
 
 let searchResults = [];
 

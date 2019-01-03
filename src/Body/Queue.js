@@ -10,13 +10,10 @@ export default class Queue extends Component {
         super ();
 
         this.state = {
-            games: [],
-            displayCompleteBtn: true,
-            displayQueueBtn: false
+            games: []
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
-        this.completeGame = this.completeGame.bind(this);
     }
 
 
@@ -36,14 +33,6 @@ export default class Queue extends Component {
         .catch(err => console.log(err));
     }
 
-    //Move game to Completed list
-    completeGame (id) {
-        axios.post(`${url}/api/gameStatus/${id}`)
-        .then(response => {
-            this.setState({ games: response.data })
-        })
-    }
-
     render () {
         return (
             <div className='gameList'>
@@ -54,16 +43,12 @@ export default class Queue extends Component {
                 {this.state.games.map(game => (
                     <Game key={game.id}
                         id={game.id}
+                        queue={game.queue}
                         guid={game.guid}
                         title={game.title}
                         img={game.img}
                         description={game.description}
-                        notes={game.notes}
-                        showEdit={this.state.showEdit}
-                        completeGame={this.completeGame}
-                        displayCompleteBtn={this.state.displayCompleteBtn}
-                        displayQueueBtn={this.state.displayQueueBtn}
-                        cancelEdit={this.cancelEdit}/>))}
+                        notes={game.notes}/>))}
             </div>
         );
     }
