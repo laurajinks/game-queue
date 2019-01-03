@@ -243,6 +243,7 @@ table {
   height: 100%;
   margin: auto;
   z-index: 3;
+  border-radius: 20px;
   background: rgba(47,69,80, .9);
   color: #F4F4F9;
   overflow: scroll;
