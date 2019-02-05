@@ -1,5 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
+
 const apiKey = process.env.API_KEY;
 
 let searchResults = [];
@@ -28,6 +29,11 @@ searchGames: (req, res, next) => {
     axios.get(`http://www.giantbomb.com/api/search?api_key=${apiKey}&format=json&query=${search}&resources=game`)
     .then( (response) => {
         response.data.results.forEach(result => {
+            console.log(result.platforms)
+        // let platformStr = '';
+        // for (let i = 0; i < result.platforms.length; i++) {
+        //     platformStr += result.platforms[i].name;
+        //     }
         let game = {title: result.name,
         id: result.id,
         guid: result.guid,
@@ -35,6 +41,7 @@ searchGames: (req, res, next) => {
         description: result.description,
         notes: '',
         queue: true}
+        // game.platform = platformStr;
         searchResults.push(game);
         })
         res.status(200).json(searchResults);

@@ -1,54 +1,69 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import Game from './Game'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Game from "./Game";
 
 const url = "http://localhost:3001";
 
 export default class Queue extends Component {
-    constructor () {
-        super ();
+    constructor() {
+        super();
 
         this.state = {
-            games: []
+            games: [],
+            refresh: false
+        };
+    }
+
+    loadData = () => {
+        axios
+            .get(`${url}/api/games`)
+            .then(response => {
+                this.setState({ games: response.data, refresh: false });
+            })
+            .catch(err => console.log(err));
+    };
+
+    componentDidMount = () => {
+        this.loadData();
+    };
+
+    componentDidUpdate = () => {
+        if (this.state.refresh) {
+            this.loadData();
         }
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this);
-    }
+    };
 
+    completeGame = id => {
+        axios
+            .put(`/api/gameStatus/${id}`)
+            .then(() => this.setState({ refresh: true }));
+    };
 
-    componentDidMount () {
-        axios.get(`${url}/api/games`)
-        .then(response => {
-            this.setState({games: response.data});
-        })
-        .catch(err => console.log(err));
-    }
-
-    componentDidUpdate () {
-        axios.get(`${url}/api/games`)
-        .then(response => {
-            this.setState({games: response.data});
-        })
-        .catch(err => console.log(err));
-    }
-
-    render () {
+    render() {
+        const games = this.state.games.map(game => (
+            <Game
+                key={game.id}
+                id={game.id}
+                queue={game.queue}
+                guid={game.guid}
+                title={game.title}
+                img={game.img}
+                description={game.description}
+                notes={game.notes}
+                completeGame={this.completeGame}
+            />
+        ));
         return (
-            <div className='gameList'>
-                <h1 className='pageTitle'>Queue</h1><br></br>
-                <div className='addBtnContainer'>
-                <Link to='/search'><button className='addBtn'>Add New Game</button></Link>
+            <div className="gameList">
+                <h1 className="pageTitle">Queue</h1>
+                <br />
+                <div className="addBtnContainer">
+                    <Link to="/search">
+                        <button className="addBtn">Add New Game</button>
+                    </Link>
                 </div>
-                {this.state.games.map(game => (
-                    <Game key={game.id}
-                        id={game.id}
-                        queue={game.queue}
-                        guid={game.guid}
-                        title={game.title}
-                        img={game.img}
-                        description={game.description}
-                        notes={game.notes}/>))}
+                {games}
             </div>
         );
     }
