@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 //Results of searching for new game
 
@@ -9,13 +10,15 @@ const Result = (props) => {
             <div className='result'>
                 <img className='resultThumb' src={props.img} alt={props.title}></img>
                 <p className='resultTitle'>{props.title}</p>
-                <button className='addNewBtn' onClick={ () => props.addNew({key: props.id,
+                <Link to='/'><button className='addNewBtn' onClick={ () => props.addNew({key: props.id,
                                                 id: props.id,
                                                 guid: props.guid,
                                                 description: props.description,
                                                 title: props.title,
                                                 img: props.img,
-                                                notes: props.notes})}>+</button>
+                                                notes: props.notes,
+                                                queue: props.queue})}>+</button>
+                </Link>
             </div>
         </div>
         )

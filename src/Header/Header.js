@@ -1,13 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = props => {
 
         return (
             <div className='header'>
-                <h1 className='appTitle' onClick={() => props.logoClick()}>Gaming Queue</h1>
+                <Link to='/'><h1 className='appTitle'>Gaming Queue</h1></Link>
                 <ul className='headerLinks'>
-                    <li className='headerListItem' onClick={() => props.handleQueue()}>Queue</li>
-                    <li className='headerListItem' onClick={() => props.handleCompleted()}>Completed</li>
+                    <Link to='/'><li className='headerListItem'>Queue</li></Link>
+                    <Link to='completed'><li className='headerListItem'>Completed</li></Link>
                 </ul>
             </div>
         )

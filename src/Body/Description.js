@@ -5,6 +5,7 @@ const Description = (props) => {
     return (
         <div className='descriptionContainer'>
             <div className='description'>
+                <p>Genres:</p>
                 <h1 className='descriptionTitle'>Description</h1>
                 <button className='closeDescriptionBtn' onClick={() => props.closeDescription()}>X</button>
                 {props.formatDescription(props.description)}
