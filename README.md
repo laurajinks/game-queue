@@ -5,10 +5,10 @@ Created by Laura Jinks Jimenez
 ## Technologies Used:
 Javascript | React | Node.js | PostgreSQL
 
-##Purpose
+## Purpose
 To familiarize myself with React, Node, SQL, and external APIs
 
-##Features
+## Features
 
 * Games stored in the database are loaded into the gaming queue in alphabetical order. The user can add or edit the notes section.
 
