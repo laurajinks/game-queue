@@ -3,4 +3,4 @@
 Created by Laura Jinks Jimenez
 
 ### Technologies Used:
-### `Javascript | React | Node.js | PostgreSQL
+### `Javascript | React | Node.js | PostgreSQL`
