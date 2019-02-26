@@ -1,2 +1,3 @@
 SELECT * FROM game
-WHERE queue = true;
+WHERE queue = true
+ORDER BY title ASC;
